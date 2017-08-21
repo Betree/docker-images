@@ -1,5 +1,5 @@
 # ---- Build stage ----
-FROM smebberson/alpine-nginx-nodejs as builder
+FROM smebberson/alpine-nginx-nodejs:4.4.0 as builder
 MAINTAINER Benjamin Piouffle <benjamin.piouffle@gmail.com>
 
 ENV LIBSASS_VERSION=3.4 SASSC_VERSION=3.4
@@ -16,7 +16,7 @@ RUN git clone https://github.com/sass/libsass && cd libsass && git checkout $LIB
 
 # ---- Actual image, without build tools ----
 
-FROM smebberson/alpine-nginx-nodejs
+FROM smebberson/alpine-nginx-nodejs:4.4.0
 MAINTAINER Benjamin Piouffle <benjamin.piouffle@gmail.com>
 
 # Copy SASS binary
