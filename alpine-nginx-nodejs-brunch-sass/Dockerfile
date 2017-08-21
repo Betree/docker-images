@@ -16,5 +16,8 @@ RUN git clone https://github.com/sass/libsass && cd libsass && git checkout $LIB
 # Copy SASS binary
 RUN cp /build/libsass/sassc/bin/sassc /usr/bin/sassc
 
+# Cleanup
+RUN rm -rf /etc/ssl /build/*
+
 # Install brunch + sass node packages
 RUN npm install -g brunch node-sass
