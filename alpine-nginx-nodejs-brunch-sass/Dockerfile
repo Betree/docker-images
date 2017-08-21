@@ -9,11 +9,10 @@ WORKDIR /build
 RUN apk --update add git build-base libstdc++ make g++ python curl
 # Update certificates to deal with git SSL error (generate a warning - you can ignore it)
 RUN mkdir -p /etc/ssl/certs  && update-ca-certificates
-# Clone libsass + sassc
-RUN git clone https://github.com/sass/libsass && cd libsass && git checkout $LIBSASS_VERSION
-RUN git clone https://github.com/sass/sassc && cd sassc && git checkout $SASSC_VERSION
-# Build !
-RUN make
+# Clone libsass + sassc and run make
+RUN git clone https://github.com/sass/libsass && cd libsass && git checkout $LIBSASS_VERSION && \
+    git clone https://github.com/sass/sassc && cd sassc && git checkout $SASSC_VERSION && \
+    make
 
 # ---- Actual image, without build tools ----
 
