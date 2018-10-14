@@ -12,12 +12,9 @@
 
 FROM centos:latest
 
-# Install node + npm + git
-RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash && \
-    yum -y install nodejs git
+# Install repos
+RUN yum install -y epel-release
+RUN curl --silent --location https://rpm.nodesource.com/setup_10.x | bash
 
-# Install Nginx
-RUN yum install -y epel-release && yum install -y nginx
-
-# Install node-sass
-RUN npm install -g node-sass npx
+# Install Nginx, nodejs and git
+RUN yum install -y nginx nodejs git
